@@ -22,8 +22,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # List all the files on runner
+      - name: List files before checkout
+        run: ls -lR
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+
+      # List all the files on runner
+      - name: List files after checkout
+        run: ls -lR
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -34,3 +42,24 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+  # This workflow contains a single job called "build"
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Sleep a bit
+        run: sleep 5
+
+  # This workflow contains a single job called "build"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Sleep again
+        run: sleep 5
+        
